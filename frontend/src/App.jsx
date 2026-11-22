@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AuthView from "./components/AuthView";
 import { authApi, groupsApi } from "./services/api";
-import { formatCOP } from "./utils/formatCurrency";
+import { formatCOP, formatThousandsInput } from "./utils/formatCurrency";
 
 export default function App() {
   const [token, setToken] = useState(
@@ -294,9 +294,18 @@ export default function App() {
     );
   };
 
+  const handleExpenseAmountChange = (e) => {
+    const onlyDigits = e.target.value.replace(/\D/g, "");
+    setExpenseAmount(onlyDigits);
+  };
+
   const handleAddExpense = async (e) => {
     e.preventDefault();
     if (!selectedGroupId) return;
+    if (!expenseAmount || Number(expenseAmount) <= 0) {
+      setError("Enter a valid amount greater than 0.");
+      return;
+    }
     if (splitBetween.length === 0) {
       setError("Select at least one member to split the expense.");
       return;
@@ -780,12 +789,11 @@ export default function App() {
                         <label className="field-label">Amount (COP)</label>
                         <input
                           className="input"
-                          type="number"
-                          step="1"
-                          min="1"
-                          placeholder="200000"
-                          value={expenseAmount}
-                          onChange={(e) => setExpenseAmount(e.target.value)}
+                          type="text"
+                          inputMode="numeric"
+                          placeholder="200.000"
+                          value={formatThousandsInput(expenseAmount)}
+                          onChange={handleExpenseAmountChange}
                           required
                         />
                       </div>
