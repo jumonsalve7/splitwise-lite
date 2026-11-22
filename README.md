@@ -2,6 +2,13 @@
 
 A full-stack MERN (MongoDB, Express, React, Vite) web application for tracking shared group expenses, managing participants, computing real-time net balances, and simplifying peer-to-peer settlements. Built with a clean fintech-inspired UI and a one-click zero-state demo mode.
 
+## Live Demo
+
+- **Frontend (Static Site):** `<URL_DE_TU_FRONTEND>`
+- **Backend API (Web Service):** `https://splitwise-lite-p5j1.onrender.com`
+
+> **Note:** Both services are hosted on Render's free tier, so the initial request after a period of inactivity may take up to ~50 seconds to wake up.
+
 ## Key Features
 
 - **Authentication & One-Click Demo Mode**: JWT-based sign-up and sign-in alongside an instant demo account that starts with a clean slate (`0` groups) for immediate testing.
