@@ -4,8 +4,8 @@ A full-stack MERN (MongoDB, Express, React, Vite) web application for tracking s
 
 ## Live Demo
 
-- **Frontend (Static Site):** `<URL_DE_TU_FRONTEND>`
-- **Backend API (Web Service):** `[https://splitwise-lite-p5j1.onrender.com](https://splitwise-lite-1.onrender.com/)`
+- **Frontend (Static Site):** `<https://splitwise-lite-1.onrender.com/>`
+- **Backend API (Web Service):** `https://splitwise-lite-p5j1.onrender.com`
 
 > **Note:** Both services are hosted on Render's free tier, so the initial request after a period of inactivity may take up to ~50 seconds to wake up.
 
