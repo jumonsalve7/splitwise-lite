@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AuthView from "./components/AuthView";
 import { authApi, groupsApi } from "./services/api";
+import { formatCOP } from "./utils/formatCurrency";
 
 export default function App() {
   const [token, setToken] = useState(
@@ -712,9 +713,9 @@ export default function App() {
                                     : "badge-negative"
                                 }
                               >
-                                {balance >= 0
-                                  ? `+$${balance.toFixed(2)}`
-                                  : `-$${Math.abs(balance).toFixed(2)}`}
+                                {balance > 0
+                                  ? `+${formatCOP(balance)}`
+                                  : formatCOP(balance)}
                               </span>
                             </li>
                           ),
@@ -740,7 +741,7 @@ export default function App() {
                             <li key={idx} className="settlement-row">
                               <strong>{s.from}</strong> pays{" "}
                               <strong style={{ color: "var(--primary-hover)" }}>
-                                ${s.amount.toFixed(2)}
+                                {formatCOP(s.amount)}
                               </strong>{" "}
                               to <strong>{s.to}</strong>
                             </li>
@@ -776,13 +777,13 @@ export default function App() {
                       </div>
 
                       <div className="field-group">
-                        <label className="field-label">Amount (USD)</label>
+                        <label className="field-label">Amount (COP)</label>
                         <input
                           className="input"
                           type="number"
-                          step="0.01"
-                          min="0.01"
-                          placeholder="0.00"
+                          step="1"
+                          min="1"
+                          placeholder="200000"
                           value={expenseAmount}
                           onChange={(e) => setExpenseAmount(e.target.value)}
                           required
@@ -884,7 +885,7 @@ export default function App() {
                               </div>
                             </div>
                             <div className="expense-amount">
-                              ${exp.amount.toFixed(2)}
+                              {formatCOP(exp.amount)}
                             </div>
                           </li>
                         ))}
